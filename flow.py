@@ -10,7 +10,6 @@ def receive_text_message(telegram_message):
 
 def receive_start_message(telegram_message):
     talk.byLog('Recebi uma nova mensagem')
-    memorize.saveHistory(telegram_message)
     user_id = telegram_message.from_user.id
     user_name = telegram_message.from_user.first_name + " " + telegram_message.from_user.last_name
     talk.byTelegram(user_id, 'Bem vindo '+user_name)
