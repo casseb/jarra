@@ -1,8 +1,9 @@
 from pymongo import MongoClient
 from datetime import datetime
 import talk
+import os
 
-client = MongoClient('localhost', 27017)
+client = MongoClient(os.environ['MONGO_URI'])
 db = client.memory
 
 def saveHistory(content):

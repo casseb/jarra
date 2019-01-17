@@ -3,6 +3,7 @@ import telebot
 import flow
 
 bot = telebot.TeleBot(os.environ['BOT_API_TOKEN'])
+nltk.download('wordnet')
 
 @bot.message_handler(commands=['start'])
 def listen_start(message):
