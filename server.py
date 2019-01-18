@@ -1,8 +1,11 @@
 import os
 import telebot
 import flow
+import talk
 
 bot = telebot.TeleBot(os.environ['BOT_API_TOKEN'])
+
+talk.byLog("Estou pronto para iniciar as atividades!")
 
 @bot.message_handler(commands=['start'])
 def listen_start(message):
