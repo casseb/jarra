@@ -5,7 +5,7 @@ import talk
 
 bot = telebot.TeleBot(os.environ['BOT_API_TOKEN'])
 
-talk.audit("Estou pronto para iniciar as atividades!")
+talk.audit("[Estou pronto!]")
 
 @bot.message_handler(commands=['start'])
 def listen_start(message):
