@@ -3,17 +3,11 @@ import understand
 import repeat
 import talk
 import memorize
-import list_of_answers
+import lists
 
-match_repeat = ['repeat','entities"1"']
-match_create_answer_list = ['create', 'list', 'answer', 'entities"1"']
-match_add_answer_list_item = ['add', 'list', 'answer', 'entities"2"']
-match_talk_random_list_item = ['talk', 'lists"1"']
-
-match_repeat_no_entities = ['repeat']
-match_create_answer_list_no_entities = ['create', 'list', 'answer']
-match_add_answer_list_no_entities = ['add', 'list', 'answer']
-match_add_answer_list_item_one_entity = ['add', 'list', 'answer', 'entities"1"']
+match_create_answer_list = ['create', 'list', 'lists"1"']
+match_add_answer_list_item = ['add', 'list', 'lists"1"', 'entities"1"']
+match_repeat = ['repeat', 'entities"1"']
 
 def receive_text_message(telegram_message):
     user_id = telegram_message.from_user.id
@@ -36,32 +30,16 @@ def toListen(message):
 def toThink(message, user_id, user_name):
     senses = understand.get_senses(message)
 
-    #fluxo de repetição
-    if all(elem in senses for elem in match_repeat):
-        repeat.execute(message, user_id)
     #fluxo de adição de uma nova lista de respostas
-    elif all(elem in senses for elem in match_create_answer_list):
-        list_of_answers.create_new_list(user_id, message)
+    if all(elem in senses for elem in match_create_answer_list):
+        lists.create_new_list(user_id, message)
     # fluxo de adição de um novo item na lista de respostas
     elif all(elem in senses for elem in match_add_answer_list_item):
-        list_of_answers.add_new_item(user_id, message)
+        lists.add_new_item(user_id, message)
     # fluxo de exibição de um item aleatório da lista de respostas
-    elif all(elem in senses for elem in match_talk_random_list_item):
-        talk.show_random_answer(user_id, message)
+    elif all(elem in senses for elem in match_repeat):
+        repeat.execute(message, user_id)
 
-
-    #fluxo de repetição sem parametros
-    elif all(elem in senses for elem in match_repeat_no_entities):
-        repeat.execute_no_parameter(message, user_id)
-    #fluxo de adição de uma nova lista de respostas sem parametros
-    elif all(elem in senses for elem in match_create_answer_list_no_entities):
-        list_of_answers.create_new_list_no_entities(user_id, message)
-    #fluxo de adição de um novo item na lista de respostas com um parâmetro
-    elif all(elem in senses for elem in match_add_answer_list_item_one_entity):
-        list_of_answers.add_new_item_one_entities(user_id, message)
-    #fluxo de adição de um novo item na lista de respostas sem parametros
-    elif all(elem in senses for elem in match_add_answer_list_no_entities):
-        list_of_answers.add_new_item_no_entities(user_id, message)
     else:
         talk.audit(user_name + " pediu algo que não faço ideia do que seja: " + message)
         talk.byTelegram(user_id, user_name + ', Não entendi nada que você disse!!! "'+ message + '" não faz sentido!!!')
