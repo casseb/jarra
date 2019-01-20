@@ -1,4 +1,5 @@
 import nltk
+import re
 from googletrans import Translator
 from nltk.corpus import wordnet as wn
 
@@ -18,6 +19,7 @@ def get_senses(message):
     for term in terms:
         if(compare(wordnet_target, wn.synsets(term))):
             senses.append(term)
+    senses = locate_entities(senses,message)
     return senses
 
 def compare(wordnet_targets_list, wordnet_origins):
@@ -30,3 +32,10 @@ def compare(wordnet_targets_list, wordnet_origins):
                 if(similarity > 0.8):
                     return True
     return False
+
+def locate_entities(senses, message):
+    entities = re.findall(r'\"(.+?)\"',message)
+    if not entities:
+        return senses
+    senses.append('entities"'+ str(len(entities)) +'"')
+    return senses

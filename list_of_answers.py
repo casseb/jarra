@@ -11,11 +11,11 @@ def execute(message):
     return message
 
 def create_new_list(user_id, message):
-    word = re.findall(r'\"(.+?)\"',message)
-    if not word:
-        talk.byTelegram(user_id, 'Você não informou qual o nome da lista, '
+    entitity = re.findall(r'\"(.+?)\"',message)
+    memorize.create_answer_list(entitity[0])
+    talk.byTelegram(user_id, "Entendido, salvando esta bodega, criada a lista " + entitity[0])
+
+def create_new_list_no_entities(user_id, message):
+    talk.byTelegram(user_id, 'Você não informou qual o nome da lista, '
                                  'repita a frase "' + message +
                                  '" adicionando o nome da lista entre aspas duplas, por obséquio')
-    else:
-        memorize.create_answer_list(word[0])
-        talk.byTelegram(user_id, "Entendido, salvando esta bodega, criada a lista " + word[0])
