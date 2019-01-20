@@ -1,9 +1,7 @@
-from support import *
-import understand
-import repeat
-import talk
-import memorize
-import lists
+from src.common.support import *
+from src.service import lists, repeat, talk, understand
+from src.repository import memorize
+
 
 def receive_start(message):
     message = convert_to_Message(message)

@@ -1,7 +1,7 @@
-from support import *
-import remember
-import talk
-import memorize
+from src.common.support import *
+from src.service import talk
+from src.repository import memorize, remember
+
 
 def replace_random_item(message):
     words = list_words_in_col(message)

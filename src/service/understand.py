@@ -1,4 +1,4 @@
-from support import *
+from src.common.support import *
 import nltk
 from googletrans import Translator
 from nltk.corpus import wordnet as wn

@@ -1,4 +1,4 @@
-from support import *
+from src.common.support import *
 import random
 
 def random_item(list_name):

@@ -1,4 +1,4 @@
-from support import *
+from src.common.support import *
 
 def createNewUndefinedSense(content):
     undefinedSense = \

@@ -3,7 +3,7 @@ import os
 import re
 import logging
 import telebot
-from message import Message
+from src.ds.message import Message
 
 #Constants
 BOT = telebot.TeleBot(os.environ['BOT_API_TOKEN'])

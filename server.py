@@ -1,5 +1,5 @@
-from support import *
-import flow
+from src.common.support import *
+from src.service import flow
 
 logging.info(SYSTEM_START_MESSAGE)
 @BOT.message_handler(commands=[START_COMMAND])

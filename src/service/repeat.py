@@ -1,5 +1,6 @@
-from support import *
-import talk
+from src.common.support import *
+from src.service import talk
+
 
 def execute(message):
     entitity = list_word_in_double_quotes(message.text)[0]
