@@ -1,18 +1,13 @@
-import os
-import telebot
+from support import *
 import flow
-import talk
 
-bot = telebot.TeleBot(os.environ['BOT_API_TOKEN'])
-
-talk.audit("Sistema Iniciado")
-
-@bot.message_handler(commands=['start'])
+logging.info(SYSTEM_START_MESSAGE)
+@BOT.message_handler(commands=[START_COMMAND])
 def listen_start(message):
-    flow.receive_start_message(message)
+    flow.receive_start(message)
 
-@bot.message_handler(content_types=['text'])
-def listen_telegram_text(message):
-    flow.receive_text_message(message)
+@BOT.message_handler(content_types=[TEXT_TYPE])
+def listen_text(message):
+    flow.receive_text(message)
 
-bot.polling()
+BOT.polling()

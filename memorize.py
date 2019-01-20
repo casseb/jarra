@@ -1,37 +1,24 @@
-from pymongo import MongoClient
-from datetime import datetime
-import os
-
-client = MongoClient(os.environ['MONGO_URI'])
-db = client.memory
-
-def saveHistory(content):
-    history = \
-        {
-        '_id' : datetime.now(),
-        'content' : content
-        }
-    return db.history.insert_one(history)
+from support import *
 
 def createNewUndefinedSense(content):
     undefinedSense = \
         {
-        'content' : content
+        DB_UNDEFINED_CONTENT : content
         }
-    return db.undefined_sense.insert(undefinedSense)
+    return DB.undefined_sense.insert(undefinedSense)
 
-def create_answer_list(content):
+def create_list(content):
     answer_list = \
         {
-        'list_name' : content,
-        'text' : content
+        DB_LISTS_LIST_NAME : content,
+        DB_LISTS_TEXT : content
         }
-    return db.answers.insert(answer_list)
+    return DB.lists.insert(answer_list)
 
 def add_answer_list_item(list_name, text):
     answer_list = \
         {
-            'list_name': list_name,
-            'text': text
+        DB_LISTS_LIST_NAME : list_name,
+        DB_LISTS_TEXT : text
         }
-    return db.answers.insert(answer_list)
+    return DB.lists.insert(answer_list)
