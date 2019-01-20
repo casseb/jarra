@@ -27,3 +27,11 @@ def create_answer_list(content):
         'text' : content
         }
     return db.answers.insert(answer_list)
+
+def add_answer_list_item(list_name, text):
+    answer_list = \
+        {
+            'list_name': list_name,
+            'text': text
+        }
+    return db.answers.insert(answer_list)

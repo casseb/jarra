@@ -14,3 +14,8 @@ def getRandomAnswer(list_name):
         for answer in answer_record_list:
             answer_list.append(answer.get('text'))
         return random.choice(answer_list)
+
+def is_list_name_set(list_name):
+    if list(db.answers.find({"list_name" : list_name})):
+        return True
+    return False

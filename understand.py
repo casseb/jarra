@@ -4,7 +4,7 @@ from googletrans import Translator
 from nltk.corpus import wordnet as wn
 
 translator = Translator()
-terms = ['repeat', 'create', 'list', 'answer']
+terms = ['repeat', 'create', 'list', 'answer', 'add', 'talk']
 
 def get_senses(message):
     englishMessage = translator.translate(message).text
@@ -19,7 +19,8 @@ def get_senses(message):
     for term in terms:
         if(compare(wordnet_target, wn.synsets(term))):
             senses.append(term)
-    senses = locate_entities(senses,message)
+    senses = locate_entities(senses, message)
+    senses = locate_answer_list(senses, message)
     return senses
 
 def compare(wordnet_targets_list, wordnet_origins):
@@ -38,4 +39,11 @@ def locate_entities(senses, message):
     if not entities:
         return senses
     senses.append('entities"'+ str(len(entities)) +'"')
+    return senses
+
+def locate_answer_list(senses, message):
+    entities = re.findall(r'\[(.+?)\]', message)
+    if not entities:
+        return senses
+    senses.append('lists"' + str(len(entities)) + '"')
     return senses
