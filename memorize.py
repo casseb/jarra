@@ -19,3 +19,11 @@ def createNewUndefinedSense(content):
         'content' : content
         }
     return db.undefined_sense.insert(undefinedSense)
+
+def create_answer_list(content):
+    answer_list = \
+        {
+        'list_name' : content,
+        'text' : content
+        }
+    return db.answers.insert(answer_list)
