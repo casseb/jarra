@@ -6,6 +6,10 @@ logging.info(SYSTEM_START_MESSAGE)
 def listen_start(message):
     flow.receive_start(message)
 
+@BOT.message_handler(commands=[HELP_COMMAND])
+def listen_start(message):
+    flow.receive_help(message)
+
 @BOT.message_handler(content_types=[TEXT_TYPE])
 def listen_text(message):
     flow.receive_text(message)

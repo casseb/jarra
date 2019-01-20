@@ -8,6 +8,11 @@ def receive_start(message):
     logging.info(str(message))
     talk.telegram(message.user_id, LIST_WELCOME + message.user_name)
 
+def receive_help(message):
+    message = convert_to_Message(message)
+    logging.info(str(message))
+    talk.telegram_help(message.user_id, HELP_MESSAGE)
+
 def receive_text(message):
     message = convert_to_Message(message)
     logging.info(str(message))

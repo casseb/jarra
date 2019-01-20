@@ -11,6 +11,7 @@ DB = MongoClient(os.environ['MONGO_URI']).memory
 
 SYSTEM_START_MESSAGE = 'Sistema iniciado'
 START_COMMAND = 'start'
+HELP_COMMAND = 'help'
 TEXT_TYPE = 'text'
 SPACE = ' '
 
@@ -32,6 +33,51 @@ REGEX_WORD_IN_DOUBLE_QUOTES = r'\"(.+?)\"'
 DB_LISTS_LIST_NAME = 'list_name'
 DB_LISTS_TEXT = 'text'
 DB_UNDEFINED_CONTENT = 'content'
+
+HELP_MESSAGE = '## *Bem Vindo ao Smart CasseBot* ##' \
+               '\n' \
+               '\n' \
+               'Ele conversa usando linguagem natural, por isso você não precisa se preocupar tanto em como escreve,' \
+               'só seguir sua intuição. Abaixo os comandos já desenvolvidos' \
+               '\n' \
+               '\n' \
+               '## *Definições* ##' \
+               '\n' \
+               '\n' \
+               '-*Listas* são conjuntos de termos que, quando solicitados, retornam um dos itens presentes de forma aleatória, elas são representadas entre [[ ]]' \
+               '\n' \
+               '*Exemplo:* uma lista chamada [[TEST]] com os itens "teste1", "teste2" e "teste3" pode trazer "teste2" ou "teste3" dependendo da sua sorte' \
+               '\n' \
+               '\n' \
+               '-*Entidades* são termos que representam o que você quer informar ao bot como objetivo, elas são representadas entre " "' \
+               '\n' \
+               '*Exemplo:* se você quer que o bot repita uma frase, será necessário falar: repita "casa", desta forma o bot sabe exatamente o que ele deve repetir' \
+               '\n' \
+               '\n' \
+               '## *Funcionalidades* ##' \
+               '\n' \
+               '\n' \
+               '-*Criar lista*' \
+               '\n' \
+               'Cria uma lista, exige exatamente ou os sinônimos das palavras "lista", "criar" e uma lista' \
+               '\n' \
+               '*Exemplo*: Crie uma lista chamada [[PIADA]]' \
+               '\n' \
+               '\n' \
+               '-*Adicionar item em uma lista*' \
+               '\n' \
+               'Adiciona um item na lista, exige exatamente ou os sinônimos das palavras "lista", "adicionar", uma entidade e uma lista' \
+               '\n' \
+               '*Exemplo*: Adicione na lista [[PIADA]] o item "Piu Piu"' \
+               '\n' \
+               '\n' \
+               '-*Repetir*' \
+               '\n' \
+               'Repete o que foi solicitado pelo usuário, exige exatamente ou os sinônimos das palavras "repetir" e uma entidade' \
+               '\n' \
+               '*Exemplo*: Repita a frase "A piada do dia é: [[PIADA]]"'
+
+
 
 #Log Configuration
 level = logging.INFO
